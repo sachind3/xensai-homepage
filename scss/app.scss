@@ -43,6 +43,9 @@ header {
   width: 100%;
   z-index: 11;
   background: #ffffff;
+  &.fixed {
+    box-shadow: 0 4px 20px -10px rgba(0, 0, 0, 0.4);
+  }
   @media only screen and (max-width: 80em) {
     padding: 1rem 0;
   }
@@ -272,7 +275,7 @@ nav {
   }
 }
 .section-services {
-  padding: 10rem 0;
+  padding: 4rem 0;
   @media only screen and (max-width: 45em) {
     padding: 3rem 0;
   }
@@ -357,7 +360,7 @@ nav {
 }
 
 .section-our-works {
-  padding: 10rem 0;
+  padding: 4rem 0;
   @media only screen and (max-width: 45em) {
     padding: 3rem 0;
   }
@@ -397,6 +400,11 @@ nav {
     align-items: flex-start;
     margin-bottom: 9rem;
     width: 100%;
+    &:hover {
+      .work-img {
+        opacity: 0.8;
+      }
+    }
     @media only screen and (max-width: 45em) {
       margin-bottom: 3rem;
     }
@@ -426,10 +434,11 @@ nav {
   h5 {
     font-weight: 500;
     font-size: 1.5rem;
+    color: #333;
   }
 }
 .section-team {
-  padding: 10rem 0;
+  padding: 4rem 0;
   @media only screen and (max-width: 45em) {
     padding: 3rem 0;
   }
@@ -505,7 +514,7 @@ nav {
   }
 }
 .section-client {
-  padding: 10rem 0 12rem;
+  padding: 4rem 0;
   @media only screen and (max-width: 45em) {
     padding: 3rem 0;
   }

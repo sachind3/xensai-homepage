@@ -26,25 +26,25 @@
     <link rel="stylesheet" href="css/app.css" />
   </head>
   <body>
-    <header>
+    <header class="header">
       <div class="wrapper">
         <a href="#section-home" class="logo">Xensai</a>
         <nav class="nav">
           <ul>
             <li>
-              <a href="#section-home" class="link">Home</a>
+              <a href="#section-home">Home</a>
             </li>
             <li>
-              <a href="#section-services" class="link">Services</a>
+              <a href="#section-services">Services</a>
             </li>
             <li>
-              <a href="#section-our-works" class="link">Our Works</a>
+              <a href="#section-our-works">Our Works</a>
             </li>
             <li>
-              <a href="#section-client" class="link">Clients</a>
+              <a href="#section-client">Clients</a>
             </li>
             <li>
-              <a href="#section-contact" class="link">Contact</a>
+              <a href="#section-contact">Contact</a>
             </li>
           </ul>
         </nav>
@@ -128,34 +128,34 @@
           good business
         </h4>
         <div class="work-grid">
-          <div class="work-col">
+          <a href="javascript:void(0);" class="work-col">
             <div class="work-img">
               <img src="images/smarthome.jpg" alt="smarthome" />
             </div>
             <p>Full stack application</p>
             <h5>Smart home dashboard</h5>
-          </div>
-          <div class="work-col">
+          </a>
+          <a href="javascript:void(0);" class="work-col">
             <div class="work-img">
               <img src="images/onboard.png" alt="onboard" />
             </div>
             <p>UX/UI design</p>
             <h5>Onboard application</h5>
-          </div>
-          <div class="work-col">
+          </a>
+          <a href="javascript:void(0);" class="work-col">
             <div class="work-img">
               <img src="images/booking.png" alt="booking" />
             </div>
             <p>Mobile application</p>
             <h5>Booking system</h5>
-          </div>
-          <div class="work-col">
+          </a>
+          <a href="javascript:void(0);" class="work-col">
             <div class="work-img">
               <img src="images/juice-product.png" alt="juice product" />
             </div>
             <p>Front End application</p>
             <h5>Juice product homepage</h5>
-          </div>
+          </a>
         </div>
         <a href="javascript:void(0);" class="seeMoreBtn"
           >see more <span class="material-icons"> arrow_right_alt </span></a
@@ -233,7 +233,11 @@
     <script>
       let body = document.body;
       let hamburger = document.querySelector(".hamburger");
+      let header = document.querySelector(".header");
       let nav = document.querySelector(".nav");
+      let links = document.querySelectorAll("nav ul li a");
+
+      // hamburger open close event
       hamburger.addEventListener("click", openMenu);
       function openMenu(e) {
         this.classList.toggle("active");
@@ -241,15 +245,35 @@
         body.classList.toggle("active");
       }
 
-      let links = document.querySelectorAll(".link");
-      links.forEach((link) => {
-        link.addEventListener("click", () => {
-          // let getClass = link.dataset.link;
-          // console.log(getClass);
-          // let findSection = document.getElementById(getClass);
-          // console.log(findSection);
-          // findSection.scrollIntoView();
+      // scroll to section
+      for (const link of links) {
+        link.addEventListener("click", clickHandler);
+      }
+
+      function clickHandler(e) {
+        e.preventDefault();
+        const href = this.getAttribute("href");
+        const offsetTop =
+          document.querySelector(href).offsetTop - header.clientHeight;
+        // for small device
+        if (window.innerWidth <= 720) {
+          hamburger.classList.toggle("active");
+          nav.classList.toggle("active");
+          body.classList.toggle("active");
+        }
+        scroll({
+          top: offsetTop,
+          behavior: "smooth",
         });
+      }
+
+      // header fixed
+      window.addEventListener("scroll", () => {
+        if (scrollY > 0) {
+          header.classList.add("fixed");
+        } else {
+          header.classList.remove("fixed");
+        }
       });
     </script>
   </body>
